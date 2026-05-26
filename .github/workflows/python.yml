@@ -1,0 +1,40 @@
+name: Python CI (uv + pytest)
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    # Install uv
+    - name: Install uv
+      run: curl -Ls https://astral.sh/uv/install.sh | sh
+
+    # Setup Python
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    # Add uv to PATH
+    - name: Add uv to PATH
+      run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+    # Create virtual env
+    - name: Create venv
+      run: uv venv
+
+    # Install dependencies
+    - name: Install dependencies
+      run: uv pip install -r requirements.txt
+
+    # Run tests
+    - name: Run pytest
+      run: uv run pytest
