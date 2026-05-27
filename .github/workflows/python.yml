@@ -5,6 +5,9 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+env: 
+  APP_NAME: "Python"
+
 jobs:
   test:
 
@@ -15,7 +18,7 @@ jobs:
       uses: actions/checkout@v4
 
     # Install uv
-    - name: Install uv
+    - name: Install uv $APP_NAME
       run: curl -Ls https://astral.sh/uv/install.sh | sh
 
     # Setup Python
@@ -25,7 +28,7 @@ jobs:
         python-version: "3.11"
 
     # Add uv to PATH
-    - name: Add uv to PATH
+    - name: Add uv to PATH $APP_NAME
       run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
     # Create virtual env
