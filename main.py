@@ -1,6 +1,3 @@
-def main():
-    print("Hello from github-actions-practice!")
+from app import add
 
-
-if __name__ == "__main__":
-    main()
+print(add(2, 3))
