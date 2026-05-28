@@ -1,0 +1,53 @@
+name: reusable python test
+
+on:
+  # push:
+  #   branches: [ "main" ]
+  # workflow_dispatch:
+
+  workflow_call:
+
+env: 
+  APP_NAME: "Python"
+  # API_KEY: ${{ secrets.API_KEY }}
+
+  jobs:
+    test:
+
+    runs-on: ubuntu-latest
+
+      strategy:
+        matrix:
+          python-version: [3.11, 3.12]
+
+
+      steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # Install uv
+      - name: Install uv ${{ env.APP_NAME }}
+        run: curl -Ls https://astral.sh/uv/install.sh | sh
+
+      # Setup Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          # python-version: "3.11"
+          python-version: ${{ matrix.python-version }}
+
+      # Add uv to PATH
+      - name: Add uv to PATH ${{ env.APP_NAME }}
+        run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      # Create virtual env
+      - name: Create venv
+        run: uv venv
+
+      # Install dependencies
+      - name: Install dependencies
+        run: uv pip install -r requirements.txt
+
+      # Run tests
+      - name: Run pytest
+        run: uv run pytest
