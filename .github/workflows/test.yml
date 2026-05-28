@@ -8,9 +8,9 @@ on:
   workflow_call:
     inputs:
       dummy_var:
-      type: string
-      required: true
-      description: "some descripton"
+        type: string
+        required: true
+        description: "some descripton"
 
 env: 
   APP_NAME: "Python"
