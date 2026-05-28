@@ -12,6 +12,8 @@ env:
 jobs:
   test: 
     uses: ./.github/workflows/test.yml
+    with:
+      dummy_var: "dummy value"
 
   build:
     needs: test

@@ -6,6 +6,11 @@ on:
   # workflow_dispatch:
 
   workflow_call:
+    inputs:
+      dummy_var:
+      type: string
+      required: true
+      description: "some descripton"
 
 env: 
   APP_NAME: "Python"
@@ -24,6 +29,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+
+
+
       # Install uv
       - name: Install uv ${{ env.APP_NAME }}
         run: curl -Ls https://astral.sh/uv/install.sh | sh
@@ -38,6 +46,10 @@ jobs:
       # Add uv to PATH
       - name: Add uv to PATH ${{ env.APP_NAME }}
         run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
+      - name: echoing dummy variable
+        run: echo "${{ inputs.dummy_var }}"
+
 
       # Create virtual env
       - name: Create venv
