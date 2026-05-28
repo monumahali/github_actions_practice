@@ -11,17 +11,16 @@ env:
   APP_NAME: "Python"
   # API_KEY: ${{ secrets.API_KEY }}
 
-  jobs:
-    test:
-
+jobs:
+  test:
     runs-on: ubuntu-latest
 
-      strategy:
-        matrix:
-          python-version: [3.11, 3.12]
+    strategy:
+      matrix:
+        python-version: [3.11, 3.12]
 
 
-      steps:
+    steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
