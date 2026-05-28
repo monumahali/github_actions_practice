@@ -7,7 +7,7 @@ on:
 
 env: 
   APP_NAME: "Python"
-  API_KEY: ${{ secrets.API_KEY }}
+  # API_KEY: ${{ secrets.API_KEY }}
 
 jobs:
   test:
@@ -89,5 +89,5 @@ jobs:
     - name: Deploy step
       run: |
         echo "Deploying package using token..."
-        echo "Token is masked: $API_KEY"
+        echo "Token is masked: ${{ secrets.API_KEY }}"
       
