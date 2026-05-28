@@ -51,7 +51,7 @@ jobs:
     needs: test
   
     steps:
-    - uses: actions/checkout@v4
+    # - uses: actions/checkout@v4
     
     - name: Install build tool
       run: pip install build
