@@ -1,25 +1,20 @@
 name: Python CI
-
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   workflow_dispatch:
-
-env: 
-  APP_NAME: "Python"
-  # API_KEY: ${{ secrets.API_KEY }}
-
+env:
+  APP_NAME: Python
 jobs:
-
   mavenactions:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: checkout
-      - uses: actions/checkout@v4
-
+        uses: actions/checkout@v4
       - name: runcompositeactions
-      - uses: ./github/actions/mavenbuild/action.yml
+        uses: ./.github/actions/mavenbuild/action.yml
 
 # on:
 #   push:
