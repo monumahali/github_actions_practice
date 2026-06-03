@@ -10,14 +10,35 @@ env:
   # API_KEY: ${{ secrets.API_KEY }}
 
 jobs:
-  test: 
-    uses: ./.github/workflows/test.yml
-    with:
-      dummy_var: "dummy value"
 
-  build:
-    needs: test
-    uses: ./.github/workflows/build.yml
+  mavenactions:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+    - uses: actions/checkout@v4
+
+    - name: runcompositeactions
+    - uses: ./github/actions/mavenbuild/action.yml
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   workflow_dispatch:
+
+# env: 
+#   APP_NAME: "Python"
+#   # API_KEY: ${{ secrets.API_KEY }}
+
+# jobs:
+#   test: 
+#     uses: ./.github/workflows/test.yml
+#     with:
+#       dummy_var: "dummy value"
+
+#   build:
+#     needs: test
+#     uses: ./.github/workflows/build.yml
 
   
 
