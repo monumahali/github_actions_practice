@@ -15,11 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: checkout
-    - uses: actions/checkout@v4
+      - name: checkout
+      - uses: actions/checkout@v4
 
-    - name: runcompositeactions
-    - uses: ./github/actions/mavenbuild/action.yml
+      - name: runcompositeactions
+      - uses: ./github/actions/mavenbuild/action.yml
 
 # on:
 #   push:
