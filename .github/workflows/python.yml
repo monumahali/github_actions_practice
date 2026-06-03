@@ -1,20 +1,46 @@
 name: Python CI
+
 on:
   push:
     branches:
       - main
   workflow_dispatch:
-env:
-  APP_NAME: Python
+
 jobs:
-  mavenactions:
+  build:
     runs-on: ubuntu-latest
-    
+
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: runcompositeactions
+
+      - name: Run composite action
         uses: ./.github/actions/mavenbuild
+        with:
+          python-version: ${{ matrix.python-version }}
+          dummy_var: "Hello from workflow"
+
+# name: Python CI
+# on:
+#   push:
+#     branches:
+#       - main
+#   workflow_dispatch:
+# env:
+#   APP_NAME: Python
+# jobs:
+#   mavenactions:
+#     runs-on: ubuntu-latest
+    
+#     steps:
+#       - name: checkout
+#         uses: actions/checkout@v4
+#       - name: runcompositeactions
+#         uses: ./.github/actions/mavenbuild
 
 # on:
 #   push:
