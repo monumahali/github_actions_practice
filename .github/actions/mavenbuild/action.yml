@@ -14,7 +14,7 @@ runs:
   steps:
     - name: Install uv
       run: curl -Ls https://astral.sh/uv/install.sh | sh
-      shell: bash
+      shell: pwsh
 
     - name: Setup Python
       uses: actions/setup-python@v5
@@ -23,31 +23,31 @@ runs:
 
     - name: Add uv to PATH
       run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
-      shell: bash
+      shell: pwsh
 
     - name: Echo input
       run: echo "${{ inputs.dummy_var }}"
-      shell: bash
+      shell: pwsh
 
     - name: Create virtual environment
       run: uv venv
-      shell: bash
+      shell: pwsh
 
     - name: Install dependencies
       run: uv pip install -r requirements.txt
-      shell: bash
+      shell: pwsh
 
     - name: Run tests
       run: uv run pytest
-      shell: bash
+      shell: pwsh
 
     - name: Install build tool
       run: python -m pip install build
-      shell: bash
+      shell: pwsh
 
     - name: Build package
       run: python -m build
-      shell: bash
+      shell: pwsh
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
