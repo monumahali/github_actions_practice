@@ -13,7 +13,7 @@ runs:
 
   steps:
     - name: Install uv
-      run: curl -Ls https://astral.sh/uv/install.sh | sh
+      run: iwr https://astral.sh/uv/install.ps1 -UseBasicParsing | iex #curl -Ls https://astral.sh/uv/install.sh | sh
       shell: pwsh
 
     - name: Setup Python
@@ -22,7 +22,7 @@ runs:
         python-version: ${{ inputs.python-version }}
 
     - name: Add uv to PATH
-      run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+      run: echo "$env:USERPROFILE\.cargo\bin" >> $env:GITHUB_PATH #echo "$HOME/.cargo/bin" >> $GITHUB_PATH
       shell: pwsh
 
     - name: Echo input
